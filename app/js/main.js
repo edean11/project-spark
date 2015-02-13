@@ -77,7 +77,6 @@ var $tbody = $('#tbody'),
     var token        = fb.getAuth().token;
         $('.login').toggleClass('hidden');
         $('.loggedIn').toggleClass('hidden');
-    //JSONGetAddresses(fb.getAuth().uid);
   }
 
   // Get addresses function
