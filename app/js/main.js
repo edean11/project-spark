@@ -20,25 +20,25 @@ var $tbody = $('#tbody'),
 ////////////////////////////////
 // Login/Logout Functionality //
 ////////////////////////////////
+    //
+
 
   $('.register').click(function(event){
     event.preventDefault();
     var $form = $($(this).closest('form')),
-        username = $form.find('[type="text"]').val(),
+        email = $form.find('[type="text"]').val(),
         pass = $form.find('[type="password"]').val();
     fb.createUser({
-        username: username,
+        email: email,
         password: pass
       },
       function(err){
         if(!err){
               fb.authWithPassword({
-                email: username,
+                email: email,
                 password: pass
               },
                 function(err, auth){
-                    $('.login').toggleClass('hidden');
-                    $('.loggedIn').toggleClass('hidden');
                     location.reload(true);
               }
             );
@@ -52,18 +52,16 @@ var $tbody = $('#tbody'),
     event.preventDefault();
 
     var $form = $($(this).closest('form')),
-        username = $form.find('[type="text"]').val(),
+        email = $form.find('[type="text"]').val(),
         pass = $form.find('[type="password"]').val();
 
     fb.authWithPassword({
-      email    : username,
+      email    : email,
       password : pass
       }, function(error, authData) {
       if (error) {
         console.log("Login Failed!", error);
       } else {
-        $('.login').toggleClass('hidden');
-        $('.app').toggleClass('hidden');
         location.reload(true);
         console.log("Authenticated successfully with payload:", authData);
       }
@@ -77,10 +75,9 @@ var $tbody = $('#tbody'),
   //if authenticated, get go to app page
   if (fb.getAuth()) {
     var token        = fb.getAuth().token;
-    $('.login').remove();
-    $('.loggedIn').toggleClass('hidden');
-
-    JSONGetAddresses(fb.getAuth().uid);
+        $('.login').toggleClass('hidden');
+        $('.loggedIn').toggleClass('hidden');
+    //JSONGetAddresses(fb.getAuth().uid);
   }
 
   // Get addresses function
@@ -97,17 +94,17 @@ var $tbody = $('#tbody'),
 // Find users not liked or disliked
 
 // Find a users matches
-fb.child('users').once('value', function (snap) {
-  var data = snap.val();
+//fb.child('users').once('value', function (snap) {
+  //var data = snap.val();
 
-  console.log('Undecided simplelogin:1', undecided(data, 'simplelogin:1'));
+  //console.log('Undecided simplelogin:1', undecided(data, 'simplelogin:1'));
 
-  console.log('Matches simplelogin:1', matches(data, 'simplelogin:1'));
-  console.log('Matches simplelogin:2', matches(data, 'simplelogin:2'));
-  console.log('Matches simplelogin:3', matches(data, 'simplelogin:3'));
-  console.log('Matches simplelogin:4', matches(data, 'simplelogin:4'));
-  console.log('Matches simplelogin:5', matches(data, 'simplelogin:5'));
-})
+  //console.log('Matches simplelogin:1', matches(data, 'simplelogin:1'));
+  //console.log('Matches simplelogin:2', matches(data, 'simplelogin:2'));
+  //console.log('Matches simplelogin:3', matches(data, 'simplelogin:3'));
+  //console.log('Matches simplelogin:4', matches(data, 'simplelogin:4'));
+  //console.log('Matches simplelogin:5', matches(data, 'simplelogin:5'));
+//})
 
 function undecided(data, uid) {
   var userList = _.keys(data),
