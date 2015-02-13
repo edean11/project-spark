@@ -15,8 +15,7 @@ notifications:
   email: false
 after_success:
   - npm install -g firebase-tools
-  - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]] && [[ "$TRAVIS_BRANCH" == "master" ]];
-  then npm run deploy; fi
+  - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]] && [[ "$TRAVIS_BRANCH" == "master" ]]; then npm run deploy; fi
 env:
   global:
     - secure: gz4smeArN0UMo7+g8WexJBW+bWEZn8wohHJ4oeEtRFwwKqiErgs18u1rVaN+72R9oPb6gjar/T4PAp0RBy9+mrqpPn+goWFiRYu8OaYWBfq2LH2F+qT+OmxdU+B7WpYjiIS+/dDzsFibVQkKRxPuafjReytKzhGYFhg3ZPmoOHg=
