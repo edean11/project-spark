@@ -19,7 +19,7 @@ describe('matching functions', function () {
       var user1Data = {id: 1, likes: 2};
       var user2Data = {id: 2, likes: 1};
 
-      userLikes(user1Data).should.equal(2);
+      usersLikes(user1Data).should.equal(2);
     });
   });
   describe('userDislikes', function () {
@@ -27,7 +27,7 @@ describe('matching functions', function () {
       var user3Data = {id: 3, dislikes: 4};
       var user4Data = {id: 4, dislikes: 3};
 
-      userDislikes(user3Data).should.equal(4);
+      usersDislikes(user3Data).should.equal(4);
     });
   });
 });
