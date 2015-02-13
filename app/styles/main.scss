@@ -1,0 +1,63 @@
+
+.login {
+  text-align: center;
+}
+
+.logout-container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.login h1 {
+  font-size: 1.1em;
+}
+
+.hiddenContainer {
+  display: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+.newContactContainer {
+  text-align: center;
+  background-color: lightgrey;
+  margin: 10px 40px;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.newContactContainer button {
+  display: block;
+  margin: 10px auto;
+  border: 1px solid black;
+  color: black;
+}
+
+.newContactButton {
+  background-color: limegreen;
+}
+
+.addContactButton {
+  background-color: steelblue;
+}
+
+tbody tr td img {
+  width: 200px;
+}
+
+tbody button {
+  background-color: red;
+  color: black;
+}
+
+.table-container {
+  margin: 5px auto;
+  width: 80%;
+}
