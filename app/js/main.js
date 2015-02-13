@@ -8,7 +8,7 @@ function hello() {
 ////////////////////////
 
 var $tbody = $('#tbody'),
-    FIREBASE_URL = 'https://address-booking.firebaseio.com',
+    FIREBASE_URL = 'https://project-spark.firebaseio.com',
     fb           = new Firebase(FIREBASE_URL);
 
     // Firebase Web Sockets Method
@@ -24,7 +24,7 @@ var $tbody = $('#tbody'),
   $('.register').click(function(event){
     event.preventDefault();
     var $form = $($(this).closest('form')),
-        username = $form.find('[type="url"]').val(),
+        username = $form.find('[type="text"]').val(),
         pass = $form.find('[type="password"]').val();
     fb.createUser({
         username: username,
@@ -37,6 +37,8 @@ var $tbody = $('#tbody'),
                 password: pass
               },
                 function(err, auth){
+                    $('.login').toggleClass('hidden');
+                    $('.loggedIn').toggleClass('hidden');
                     location.reload(true);
               }
             );
@@ -50,7 +52,7 @@ var $tbody = $('#tbody'),
     event.preventDefault();
 
     var $form = $($(this).closest('form')),
-        username = $form.find('[type="url"]').val(),
+        username = $form.find('[type="text"]').val(),
         pass = $form.find('[type="password"]').val();
 
     fb.authWithPassword({
@@ -60,6 +62,8 @@ var $tbody = $('#tbody'),
       if (error) {
         console.log("Login Failed!", error);
       } else {
+        $('.login').toggleClass('hidden');
+        $('.app').toggleClass('hidden');
         location.reload(true);
         console.log("Authenticated successfully with payload:", authData);
       }
