@@ -92,4 +92,62 @@ var $tbody = $('#tbody'),
   }
 
 
+var fb = new Firebase('https://exampleappstructure.firebaseio.com/');
 
+// Find users not liked or disliked
+
+// Find a users matches
+fb.child('users').once('value', function (snap) {
+  var data = snap.val();
+
+  console.log('Undecided simplelogin:1', undecided(data, 'simplelogin:1'));
+
+  console.log('Matches simplelogin:1', matches(data, 'simplelogin:1'));
+  console.log('Matches simplelogin:2', matches(data, 'simplelogin:2'));
+  console.log('Matches simplelogin:3', matches(data, 'simplelogin:3'));
+  console.log('Matches simplelogin:4', matches(data, 'simplelogin:4'));
+  console.log('Matches simplelogin:5', matches(data, 'simplelogin:5'));
+})
+
+function undecided(data, uid) {
+  var userList = _.keys(data),
+      myLikes = usersLikes(data[uid].data),
+      myDislikes = usersDislikes(data[uid].data);
+
+  return _.difference(userList, myLikes, myDislikes, [uid]);
+}
+
+function matches(data, uid) {
+  var myLikes = usersLikes(data[uid].data);
+
+  return _.filter(myLikes, function (user, i) {
+    var user = data[user] || {},
+        userData = user.data || {},
+        userLikes = usersLikes(userData);
+
+    return _.includes(userLikes, uid);
+  });
+}
+
+function usersLikes(userData) {
+  return _(userData.likes)
+    .values()
+    .map(function (user) {
+      return user.id;
+    })
+    .value();
+}
+
+function usersDislikes(userData) {
+  return _(userData.dislikes)
+    .values()
+    .map(function (user) {
+      return user.id;
+    })
+    .value();
+}
+
+
+/*
+
+*/
