@@ -1,0 +1,57 @@
+doctype html(lang='en-US')
+head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title My Title
+    link(rel='stylesheet', href='styles/normalize.css')
+    link(rel='stylesheet', href='styles/skeleton.css')
+    link(rel='stylesheet', href='css/main.css')
+
+body
+    //if lt IE 9
+      script(src='http://html5shiv.googlecode.com/svn/trunk/html5.js')
+
+      h1 Spark
+    .login
+      h1 Please Login Or Register
+      form
+        input(type='text', name='username', placeholder='user', required='required')
+        input(type='password', name='password', required='required')
+        button.register Register
+        input.loginButton(type='submit', name='login', value='Login')
+
+    .loggedIn.hidden
+      .profilePicture
+        input(type="url")#profilePictureUrl
+      .profileContent
+        .gender
+          select.genderSelect
+            option male
+            option female
+        .description
+          textarea(name="textare" row="10" cols="50") What's your story...
+
+        .profileButtons
+          .row
+            .six.columns
+              button Save
+            .six.columns
+              button Delete
+
+    .app.hidden
+      img(src="#")#settingsIcon
+      .foundProfile
+        .foundProfilePicture
+        .foundProfileData
+      .appButtons
+        .row
+          .six.columns
+            button Save
+          .six.columns
+            button Delete
+
+    script(src='vendor/jquery.min.js')
+    script(src='vendor/lodash.min.js')
+    script(src='vendor/firebase.js')
+    script(src='j.s/main.js')
