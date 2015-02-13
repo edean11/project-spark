@@ -94,10 +94,6 @@ var $tbody = $('#tbody'),
       }
     });
   }
-
-
-var fb = new Firebase('https://exampleappstructure.firebaseio.com/');
-
 // Find users not liked or disliked
 
 // Find a users matches
