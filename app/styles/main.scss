@@ -2,13 +2,6 @@
 .login {
   text-align: center;
 }
-
-.logout-container {
-  width: 80%;
-  margin: 0 auto;
-  text-align: center;
-}
-
 .hidden {
   display: none;
 }
@@ -17,47 +10,35 @@
   font-size: 1.1em;
 }
 
-.hiddenContainer {
-  display: none;
-}
-
-h1 {
+.loggedIn {
+  padding: 8%;
+  margin: 5%;
+  border: 1px solid grey;
   text-align: center;
+
+  .profilePicture {
+    margin-bottom: 10px;
+  }
+
+  .appendedProfilePic {
+    img {
+      width: 400px;
+    }
+  }
+
+  .profileContent {
+    width: 70%;
+    margin: 0 auto;
+
+    .profileButtons {
+      width: 65%;
+      margin: 0 auto;
+    }
+  }
 }
 
-.newContactContainer {
-  text-align: center;
-  background-color: lightgrey;
-  margin: 10px 40px;
-  padding: 20px;
-  border: 1px solid black;
-}
-
-.newContactContainer button {
-  display: block;
-  margin: 10px auto;
-  border: 1px solid black;
-  color: black;
-}
-
-.newContactButton {
-  background-color: limegreen;
-}
-
-.addContactButton {
-  background-color: steelblue;
-}
-
-tbody tr td img {
-  width: 200px;
-}
-
-tbody button {
-  background-color: red;
-  color: black;
-}
-
-.table-container {
-  margin: 5px auto;
-  width: 80%;
+.app {
+  #settingsIcon {
+    width: 60px;
+  }
 }

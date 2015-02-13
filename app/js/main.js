@@ -12,10 +12,16 @@ var $tbody = $('#tbody'),
     fb           = new Firebase(FIREBASE_URL);
 
     // Firebase Web Sockets Method
-    //var usersFb = new Firebase(FIREBASE_URL+'/users/'+fb.getAuth().uid + 'data/friends');
-    //usersFb.once('value', function(res){
-      //console.log(res.val())
+      //usersFb.once('value', function(res){
+        //console.log(res.val())
     //});
+
+
+    //var usersDataFb = new Firebase(FIREBASE_URL+'/users/'+fb.getAuth().uid + 'data');
+      //usersFb.once('value', function(res){
+        //console.log(res.val())
+    //});
+
 
 ////////////////////////////////
 // Login/Logout Functionality //
@@ -67,6 +73,58 @@ var $tbody = $('#tbody'),
       }
     });
   });
+
+/////////////////////////////////////////////////////////////////
+//////////////////// Profile Setup /////////////////////////////
+////////////////////////////////////////////////////////////////
+
+
+// Profile Picture Addition
+var $profilePictureContainer = $('.appendedProfilePic');
+var $submitProfilePic = $('#submitProfilePic');
+var $profilePicInput = $('.profilePicture');
+
+$submitProfilePic.click(function(){
+  $profilePicInput.toggleClass('hidden');
+  var $pic = $('#profilePictureUrl').val();
+  var $img = $('<img src='+$pic+'></img>');
+  $profilePictureContainer.append($img);
+});
+
+// Profile Reset
+
+var $resetProfileButton = $('#resetProfileButton');
+
+$resetProfileButton.click(function(){
+  location.reload(true);
+});
+
+// Profile Save
+
+var $saveProfileButton = $('#saveProfileButton');
+
+$saveProfileButton.click(function(){
+  $('.loggedIn').toggleClass('hidden');
+  $('.app').toggleClass('hidden');
+  saveProfile(fb.getAuth().uid);
+});
+
+function saveProfile(uid){
+  var usersProfileFb = new Firebase(FIREBASE_URL+'/users/'+uid+'/profile');
+  var $img = $('#profilePictureUrl').val();
+  var $username = $('#username').val();
+  var $gender = $('.genderSelect').val();
+  var $description = $('#textarea').val();
+  var profileObject = { ProfilePic: $img, Username: $username, Gender: $gender, Bio: $description }
+  usersProfileFb.push(profileObject);
+}
+
+
+///////////////////////////////////////////////////////////////
+/////////////////// App Page ///////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+// Post 
 
 /////////////////////////////////////////////////////////////////////
 ////////// On Window Load Get and Load Current Address Book //////////

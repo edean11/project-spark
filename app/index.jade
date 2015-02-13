@@ -23,24 +23,31 @@ body
 
     .loggedIn.hidden
       .profilePicture
-        input(type="url")#profilePictureUrl
+        label(for="profilePic") Enter a URL for your Profile Picture
+        input(type="url" name="profilePic" placeholder="www.example.com")#profilePictureUrl
+        button#submitProfilePic.
+          +
+      .appendedProfilePic
       .profileContent
+        .username
+          label(for="username") Select a Username
+          input(type="text")#username
         .gender
-          select.genderSelect
+          label(for="genderSelectDropdown") Select Your Gender
+          select(name="genderSelectDropdown").genderSelect
             option male
             option female
         .description
-          textarea(name="textare" row="10" cols="50") What's your story...
-
-        .profileButtons
-          .row
-            .six.columns
-              button Save
-            .six.columns
-              button Delete
+          textarea(name="textarea" id="textarea" row="10" cols="50") What's your story...
+          .profileButtons
+            .row
+              .six.columns
+                button#saveProfileButton Save
+              .six.columns
+                button#resetProfileButton Reset
 
     .app.hidden
-      img(src="#")#settingsIcon
+      img(src="https://svn.apache.org/repos/asf/openoffice/symphony/trunk/main/extras/source/gallery/symbols/Icon-Gear01-Grey.png")#settingsIcon
       .foundProfile
         .foundProfilePicture
         .foundProfileData
