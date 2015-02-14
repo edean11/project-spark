@@ -26,7 +26,6 @@ var $tbody = $('#tbody'),
 ////////////////////////////////
 // Login/Logout Functionality //
 ////////////////////////////////
-    //
 
 
   $('.register').click(function(event){
@@ -200,6 +199,26 @@ function usersDislikes(userData) {
     })
     .value();
 }
+
+
+function userLikes(userData) {
+  return _(userData.likes)
+    .values()
+    .map(function (user) {
+      return user.id;
+    })
+    .value();
+}
+
+function userDislikes(userData) {
+  return _(userData.dislikes)
+    .values()
+    .map(function (user) {
+      return user.id;
+    })
+    .value();
+}
+
 
 
 /*
