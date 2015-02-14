@@ -26,7 +26,6 @@ var $tbody = $('#tbody'),
 ////////////////////////////////
 // Login/Logout Functionality //
 ////////////////////////////////
-    //
 
 
   $('.register').click(function(event){
