@@ -115,7 +115,8 @@ function saveProfile(uid){
   var $username = $('#username').val();
   var $gender = $('.genderSelect').val();
   var $description = $('#textarea').val();
-  var profileObject = { ProfilePic: $img, Username: $username, Gender: $gender, Bio: $description }
+  var $email = $('#userEmail').val();
+  var profileObject = { ProfilePic: $img, Username: $username, Gender: $gender, Bio: $description, Email: $email }
   usersProfileFb.push(profileObject);
 }
 
@@ -124,7 +125,7 @@ function saveProfile(uid){
 /////////////////// App Page ///////////////////////////////////
 //////////////////////////////////////////////////////////////
 
-// Post 
+// Post//////////////// 
 
 /////////////////////////////////////////////////////////////////////
 ////////// On Window Load Get and Load Current Address Book //////////
