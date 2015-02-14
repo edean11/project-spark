@@ -26,24 +26,20 @@ describe('matching functions', function () {
       usersDislikes(data)[0].should.equal("simplelogin:3");
     });
   });
-  //describe('matches', function () {
-    //it('should return the matches for a user', function () {
-      //var data = {{user1Data:{data{id: 1, likes: 'user2Data'},
-                      //user2Data:{data{id: 1, likes: 'user1Data'}}}}}
-      //user1Data = {id: 1, likes: 'user2Data'};
-      //var user2Data = {id: 2, likes: 'user1Data'};
-
-      //usersLikes(user1Data).should.equal(2);
-    //});
-  //});
-  //describe('undecided', function () {
-    //it('should return the undecided user id', function () {
-      //var user3Data = {id: 3, dislikes: 'user4Data'};
-      //var user4Data = {id: 4, dislikes: 'user3Data'};
-
-      //usersDislikes(user3Data).should.equal(4);
-    //});
-  //});
+  describe('matches', function () {
+    it('should return the matches for a user', function () {
+      var data = {'simplelogin:2': {'data': {"likes": {"x":{"id": "simplelogin:3"}}}},
+        'simplelogin:3': {'data': {"likes": {"y":{"id": "simplelogin:2"}}}}}
+      matches(data, 'simplelogin:2')[0].should.equal('simplelogin:3');
+    });
+  });
+  describe('undecided', function () {
+    it('should return the undecided users', function () {
+      var data = {'simplelogin:4': {'data': {"likes": {"x":{"id": "simplelogin:3"}}}},
+        'simplelogin:5': {'data': {"likes": {"y":{"id": "simplelogin:2"}}}}}
+      undecided(data, 'simplelogin:4')[0].should.equal('simplelogin:5');
+    });
+  });
 });
 
 

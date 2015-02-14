@@ -201,26 +201,6 @@ function usersDislikes(userData) {
 }
 
 
-function userLikes(userData) {
-  return _(userData.likes)
-    .values()
-    .map(function (user) {
-      return user.id;
-    })
-    .value();
-}
-
-function userDislikes(userData) {
-  return _(userData.dislikes)
-    .values()
-    .map(function (user) {
-      return user.id;
-    })
-    .value();
-}
-
-
-
 /*
 
 */
