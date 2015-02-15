@@ -131,7 +131,7 @@ fb.child('users').once('value', function (snap) {
 
 })
 
-function createProfile() {
+function createProfile(data, uid) {
 
   var $container = $('<div class="profileContainer></div>');
 
