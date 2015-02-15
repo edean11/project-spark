@@ -124,7 +124,30 @@ function saveProfile(uid){
 /////////////////// App Page ///////////////////////////////////
 //////////////////////////////////////////////////////////////
 
-// Post//////////////// 
+
+// Find a users matches
+fb.child('users').once('value', function (snap) {
+  var data = snap.val();
+
+})
+
+function createProfile() {
+
+  var $container = $('<div class="profileContainer></div>');
+
+  var $profileImage = $('<div><img src="' + data[uid].ProfilePic + '"></div>'),
+      $profileName  = $('<div>' + data[uid].Username + '</div>'),
+      $profileDesc  = $('<div>' + data[uid].Bio + '</div>');
+
+  $container.append($profileImage);
+  $container.append($profileName);
+  $container.append($profileDesc);
+
+  $('#target').append($container);
+
+
+};
+
 
 /////////////////////////////////////////////////////////////////////
 ////////// On Window Load Get and Load Current Address Book //////////
@@ -149,9 +172,7 @@ function saveProfile(uid){
     });
   }
 // Find users not liked or disliked
-
-// Find a users matches
-//fb.child('users').once('value', function (snap) {
+  //fb.child('users').once('value', function (snap) {
   //var data = snap.val();
 
   //console.log('Undecided simplelogin:1', undecided(data, 'simplelogin:1'));
