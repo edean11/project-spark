@@ -98,7 +98,7 @@ $resetProfileButton.click(function(){
   location.reload(true);
 });
 
-// Profile Save
+// Profile Save/Get
 
 var $saveProfileButton = $('#saveProfileButton');
 
@@ -117,8 +117,18 @@ function saveProfile(uid){
   var $email = $('#userEmail').val();
   var profileObject = { ProfilePic: $img, Username: $username, Gender: $gender, Bio: $description, Email: $email }
   usersProfileFb.push(profileObject);
+  return profileObject;
 }
 
+function appendProfile(uid){
+  fb.child('users').once('value', function(snap){
+    var data = snap.val();
+    var user = _.valuesIn(data[uid].profile)[0];
+    var dataObject = {Bio: user.Bio, Gender: user.Gender, ProfilePic: user.ProfilePic, Username: user.Username}
+
+    createProfile(dataObject, uid);
+  });
+}
 
 ///////////////////////////////////////////////////////////////
 /////////////////// App Page ///////////////////////////////////
@@ -127,8 +137,8 @@ function saveProfile(uid){
 
 // Find a users matches
 fb.child('users').once('value', function (snap) {
-  var data = snap.val()[fb.getAuth().uid].data;
-  console.log(usersLikes(data));
+  var data1 = snap.val()[fb.getAuth().uid].data;
+
   //var undecided = undecided(data, fb.getAuth().uid);
   //console.log(undecided);
   //createProfile(, fb.getAuth().uid);
@@ -136,11 +146,16 @@ fb.child('users').once('value', function (snap) {
 
 function createProfile(data, uid) {
 
+  $('#target').empty();
+
   var $container = $('<div class="profileContainer></div>');
 
-  var $profileImage = $('<div><img src="' + data[uid].ProfilePic + '"></div>'),
-      $profileName  = $('<div>' + data[uid].Username + '</div>'),
-      $profileDesc  = $('<div>' + data[uid].Bio + '</div>');
+  var $profileImage = $('<div><img src="' + data.ProfilePic + '"></div>'),
+      $profileName  = $('<div>' + data.Username + '</div>'),
+      $profileDesc  = $('<div>' + data.Bio + '</div>');
+  console.log($profileImage);
+  console.log($profileName);
+  console.log($profileDesc);
 
   $container.append($profileImage);
   $container.append($profileName);
@@ -165,7 +180,7 @@ function dislikeUser(myUid, dislikedUid) {
 
 
 /////////////////////////////////////////////////////////////////////
-////////// On Window Load Get and Load Current Address Book //////////
+////////// On Window Load Get and Load  ////////////////////////
 ///////////////////////////////////////////////////////////////////
 
   //if authenticated, get go to app page
@@ -175,44 +190,35 @@ function dislikeUser(myUid, dislikedUid) {
         $('.app').toggleClass('hidden');
   }
 
-  // Get addresses function
-  //function JSONGetAddresses(uid){
-    //var token        = fb.getAuth().token;
-    //$.get(FIREBASE_URL + '/users/' + uid + '/data/friends.json?auth='+token, function(res){
-      //if(res !== null) {
-        //Object.keys(res).forEach(function(uuid){
-          //loadCurrentAddressBook(uuid, res[uuid]);
-        //});
-      //}
-    //});
-  //}
-// Find users not liked or disliked
-  //fb.child('users').once('value', function (snap) {
-  //var data = snap.val();
+// Populate First Undecided Profile //
 
-  //console.log('Undecided simplelogin:1', undecided(data, 'simplelogin:1'));
-
-  //console.log('Matches simplelogin:1', matches(data, 'simplelogin:1'));
-  //console.log('Matches simplelogin:2', matches(data, 'simplelogin:2'));
-  //console.log('Matches simplelogin:3', matches(data, 'simplelogin:3'));
-  //console.log('Matches simplelogin:4', matches(data, 'simplelogin:4'));
-  //console.log('Matches simplelogin:5', matches(data, 'simplelogin:5'));
-//})
-
-function undecided(data, uid) {
-  var userList = _.keys(data),
-      myLikes = usersLikes(data[uid].data),
-      myDislikes = usersDislikes(data[uid].data);
-
-  return _.difference(userList, myLikes, myDislikes, [uid]);
+function getAndCreateProfile(){
+  fb.child('users').once('value', function (snap) {
+    var data = snap.val();
+    console.log((undecided(data, fb.getAuth().uid))[0]);
+    appendProfile((undecided(data, fb.getAuth().uid))[0]);
+  });
 }
 
+getAndCreateProfile();
+
+// Find users not liked or disliked
+function undecided(data, uid) {
+  var userList   = _.keys(data),
+      myLikes    = usersLikes(data[uid].data),
+      myDislikes = usersDislikes(data[uid].data),
+      self       = [uid];
+  // Add an additional filter of users from an desired gender?
+
+  return _.difference(userList, self, myLikes, myDislikes);
+}
+
+// Find a users matches
 function matches(data, uid) {
   var myLikes = usersLikes(data[uid].data);
 
   return _.filter(myLikes, function (user, i) {
-    var user = data[user] || {},
-        userData = user.data || {},
+    var userData  = data[user].data,
         userLikes = usersLikes(userData);
 
     return _.includes(userLikes, uid);
@@ -220,22 +226,68 @@ function matches(data, uid) {
 }
 
 function usersLikes(userData) {
-  return _(userData.likes)
-    .values()
-    .map(function (user) {
-      return user.id;
-    })
-    .value();
+  if (userData && userData.likes) {
+    return _(userData.likes)
+      .values()
+      .map(function (user) {
+        return user.id;
+      })
+      .value();
+  } else {
+    return [];
+  }
 }
 
 function usersDislikes(userData) {
-  return _(userData.dislikes)
-    .values()
-    .map(function (user) {
-      return user.id;
-    })
-    .value();
+  if (userData && userData.dislikes) {
+    return _(userData.dislikes)
+      .values()
+      .map(function (user) {
+        return user.id;
+      })
+      .value();
+  } else {
+    return [];
+  }
 }
+
+//function undecided(data, uid) {
+  //var userList = _.keys(data),
+      //myLikes = usersLikes(data[uid].data),
+      //myDislikes = usersDislikes(data[uid].data);
+
+  //return _.difference(userList, myLikes, myDislikes, [uid]);
+//}
+
+//function matches(data, uid) {
+  //var myLikes = usersLikes(data[uid].data);
+
+  //return _.filter(myLikes, function (user, i) {
+    //var user = data[user] || {},
+        //userData = user.data || {},
+        //userLikes = usersLikes(userData);
+
+    //return _.includes(userLikes, uid);
+  //});
+//}
+
+//function usersLikes(userData) {
+  //return _(userData.likes)
+    //.values()
+    //.map(function (user) {
+      //return user.id;
+    //})
+    //.value();
+//}
+
+//function usersDislikes(userData) {
+  //return _(userData.dislikes)
+    //.values()
+    //.map(function (user) {
+      //return user.id;
+    //})
+    //.value();
+//}
 
 
 /*
