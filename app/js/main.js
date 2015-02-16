@@ -148,7 +148,7 @@ function createProfile(data, uid) {
 
   $('#target').empty();
 
-  var $container = $('<div class="profileContainer></div>');
+  var $container = $('<div class="profileContainer"></div>');
 
   var $profileImage = $('<div><img src="' + data.ProfilePic + '"></div>'),
       $profileName  = $('<div>' + data.Username + '</div>'),
@@ -162,7 +162,6 @@ function createProfile(data, uid) {
   $container.append($profileDesc);
 
   $('#target').append($container);
-
 
 };
 
@@ -195,12 +194,44 @@ function dislikeUser(myUid, dislikedUid) {
 function getAndCreateProfile(){
   fb.child('users').once('value', function (snap) {
     var data = snap.val();
-    console.log((undecided(data, fb.getAuth().uid))[0]);
     appendProfile((undecided(data, fb.getAuth().uid))[0]);
   });
 }
 
 getAndCreateProfile();
+
+// Click Events for Populating the App Page
+
+$('#dislikeButton').click(function(){
+  fb.child('users').once('value', function (snap) {
+    var data = snap.val();
+    var dislikedUser = (undecided(data, fb.getAuth().uid))[0];
+    dislikeUser(fb.getAuth().uid, dislikedUser);
+    var nextUser = (undecided(data, fb.getAuth().uid))[1];
+    if(nextUser){
+      getAndCreateProfile();
+    } else {
+      $('#target').empty();
+      $('#target').append($('<img src"#"></img>'));
+    }
+  });
+});
+
+
+$('#likeButton').click(function(){
+  fb.child('users').once('value', function (snap) {
+    var data = snap.val();
+    var likedUser = (undecided(data, fb.getAuth().uid))[0];
+    likeUser(fb.getAuth().uid, likedUser);
+    var nextUser = (undecided(data, fb.getAuth().uid))[1];
+    if(nextUser){
+      getAndCreateProfile();
+    } else {
+      $('#target').empty();
+      $('#target').append($('<img src"#"></img>'));
+    }
+  });
+});
 
 // Find users not liked or disliked
 function undecided(data, uid) {
@@ -250,44 +281,6 @@ function usersDislikes(userData) {
     return [];
   }
 }
-
-//function undecided(data, uid) {
-  //var userList = _.keys(data),
-      //myLikes = usersLikes(data[uid].data),
-      //myDislikes = usersDislikes(data[uid].data);
-
-  //return _.difference(userList, myLikes, myDislikes, [uid]);
-//}
-
-//function matches(data, uid) {
-  //var myLikes = usersLikes(data[uid].data);
-
-  //return _.filter(myLikes, function (user, i) {
-    //var user = data[user] || {},
-        //userData = user.data || {},
-        //userLikes = usersLikes(userData);
-
-    //return _.includes(userLikes, uid);
-  //});
-//}
-
-//function usersLikes(userData) {
-  //return _(userData.likes)
-    //.values()
-    //.map(function (user) {
-      //return user.id;
-    //})
-    //.value();
-//}
-
-//function usersDislikes(userData) {
-  //return _(userData.dislikes)
-    //.values()
-    //.map(function (user) {
-      //return user.id;
-    //})
-    //.value();
-//}
 
 
 /*

@@ -51,13 +51,13 @@ body
 
     .app.hidden
       img(src="https://svn.apache.org/repos/asf/openoffice/symphony/trunk/main/extras/source/gallery/symbols/Icon-Gear01-Grey.png")#settingsIcon
-      .foundProfile#target
+      #target
       .appButtons
         .row
           .six.columns
-            button Dislike
+            button#dislikeButton Dislike
           .six.columns
-            button Like
+            button#likeButton Like
 
     script(src='vendor/jquery.min.js')
     script(src='vendor/lodash.min.js')
