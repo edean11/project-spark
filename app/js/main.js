@@ -117,6 +117,7 @@ function saveProfile(uid){
   var $email = $('#userEmail').val();
   var profileObject = { ProfilePic: $img, Username: $username, Gender: $gender, Bio: $description, Email: $email }
   usersProfileFb.push(profileObject);
+  getAndCreateProfile();
   return profileObject;
 }
 
@@ -137,11 +138,7 @@ function appendProfile(uid){
 
 // Find a users matches
 fb.child('users').once('value', function (snap) {
-  var data1 = snap.val()[fb.getAuth().uid].data;
-
-  //var undecided = undecided(data, fb.getAuth().uid);
-  //console.log(undecided);
-  //createProfile(, fb.getAuth().uid);
+  //var data = snap.val()[fb.getAuth().uid].data;
 })
 
 function createProfile(data, uid) {
@@ -183,11 +180,22 @@ function dislikeUser(myUid, dislikedUid) {
 ///////////////////////////////////////////////////////////////////
 
   //if authenticated, get go to app page
-  if (fb.getAuth()) {
-    var token        = fb.getAuth().token;
-        $('.login').toggleClass('hidden');
-        $('.app').toggleClass('hidden');
-  }
+
+  fb.child('users').once('value', function(snap){
+    function profile() {
+         if(fb.getAuth()[fb.getAuth().uid]){
+            return true
+         } else { return undefined }
+    }
+    if (fb.getAuth()&&profile()) {
+      $('.login').toggleClass('hidden');
+      $('.app').toggleClass('hidden');
+      getAndCreateProfile();
+    } else if (fb.getAuth()) {
+      $('.login').toggleClass('hidden');
+      $('.loggedIn').toggleClass('hidden');
+    }
+  });
 
 // Populate First Undecided Profile //
 
@@ -197,8 +205,6 @@ function getAndCreateProfile(){
     appendProfile((undecided(data, fb.getAuth().uid))[0]);
   });
 }
-
-getAndCreateProfile();
 
 // Click Events for Populating the App Page
 
