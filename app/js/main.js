@@ -127,8 +127,11 @@ function saveProfile(uid){
 
 // Find a users matches
 fb.child('users').once('value', function (snap) {
-  var data = snap.val();
-
+  var data = snap.val()[fb.getAuth().uid].data;
+  console.log(usersLikes(data));
+  //var undecided = undecided(data, fb.getAuth().uid);
+  //console.log(undecided);
+  //createProfile(, fb.getAuth().uid);
 })
 
 function createProfile(data, uid) {
@@ -148,6 +151,18 @@ function createProfile(data, uid) {
 
 };
 
+function likeUser(myUid, likedUid) {
+  var usersDataFb = new Firebase(FIREBASE_URL+'/users/'+myUid+'/data/likes');
+  var likeObject = {id: likedUid};
+  usersDataFb.push(likeObject);
+}
+
+function dislikeUser(myUid, dislikedUid) {
+  var usersDataFb = new Firebase(FIREBASE_URL+'/users/'+myUid+'/data/dislikes');
+  var dislikeObject = {id: dislikedUid};
+  usersDataFb.push(dislikeObject);
+}
+
 
 /////////////////////////////////////////////////////////////////////
 ////////// On Window Load Get and Load Current Address Book //////////
@@ -157,20 +172,20 @@ function createProfile(data, uid) {
   if (fb.getAuth()) {
     var token        = fb.getAuth().token;
         $('.login').toggleClass('hidden');
-        $('.loggedIn').toggleClass('hidden');
+        $('.app').toggleClass('hidden');
   }
 
   // Get addresses function
-  function JSONGetAddresses(uid){
-    var token        = fb.getAuth().token;
-    $.get(FIREBASE_URL + '/users/' + uid + '/data/friends.json?auth='+token, function(res){
-      if(res !== null) {
-        Object.keys(res).forEach(function(uuid){
-          loadCurrentAddressBook(uuid, res[uuid]);
-        });
-      }
-    });
-  }
+  //function JSONGetAddresses(uid){
+    //var token        = fb.getAuth().token;
+    //$.get(FIREBASE_URL + '/users/' + uid + '/data/friends.json?auth='+token, function(res){
+      //if(res !== null) {
+        //Object.keys(res).forEach(function(uuid){
+          //loadCurrentAddressBook(uuid, res[uuid]);
+        //});
+      //}
+    //});
+  //}
 // Find users not liked or disliked
   //fb.child('users').once('value', function (snap) {
   //var data = snap.val();
