@@ -45,24 +45,49 @@ describe('matching functions', function () {
 describe('createProfile', function () {
   it('should create a profile and append to a div', function () {
 
-    var $container = $('<div id="profile"></div>');
+    before(function () {
 
-    var $containerContent = $('<div></div><div></div><div></div>')
+    if (window.__karma__) {
 
-    $('#profile').append($containerContent);
+      $('body').empty();
 
+      var $container = $('<div id="profile"></div>');
+
+      var $divs = $('div');
+
+      var $containerContent = $('<div></div><div></div><div></div>')
+
+      $('#profile').append($containerContent);
+
+      $('div').length.should.equal(4);
+
+    }
+    });
   });
 });
+
 
 describe('createMatches', function () {
   it('should create a profile of a users match and append to a div', function () {
 
-    var $container = $('<div id="profileMatch"></div>');
+    before(function () {
 
-    var $containerContent = $('<div></div><div></div><div></div>')
+    if (window.__karma__) {
 
-    $('#profileMatch').append($containerContent);
+      $('body').empty();
 
+      var $container = $('<div id="profileMatch"></div>');
+
+      var $divs = $('div');
+
+      var $containerContent = $('<div></div><div></div><div></div>')
+
+      $('#profileMatch').append($containerContent);
+
+      $('div').length.should.equal(4);
+
+    }
+    });
   });
 });
 
