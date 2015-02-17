@@ -1,14 +1,127 @@
-
-.login {
+body {
+  background: rgba(252, 252, 250, 0.96);
   text-align: center;
 }
+
+h1 {
+  margin: 10px;
+  color: #64aec0;
+  font-weight: bold;
+}
+
+/*.mainHeader {*/
+  /*background: #FF5475;*/
+/*}*/
+
+//////////////////////////////////////
+////////Login Form Styling///////////
+////////////////////////////////////
+
+.login {
+  padding: 5%;
+  margin: 10% auto;
+  border: 3px solid #64aec0;
+  border-radius: 20px;
+  max-height: 315px;
+  max-width: 250px;
+  color: #64aec0;
+  }
+
+  .login h1 {
+    font-size: 1.5em;
+    margin: 0px 0px 40px 0px;
+  }
+
+  .usernameInput {
+    text-align: center;
+    display: block;
+    margin: auto;
+    margin-bottom: 25px;
+  }
+
+  .userPasswordInput {
+    text-align: center;
+    display: block;
+    margin: auto;
+    margin-bottom: 25px;
+  }
+
+  label {
+   color: #64aec0;
+   font-weight: bold;
+  }
+
+
+//////////////////////////////////////
+//////Register Button Styling////////
+////////////////////////////////////
+
+  .register {
+    margin-top: 15px;
+    margin-right: 10px;
+    color: #ff5475;
+    border: #ff5475 solid 2px;
+    padding: 0px 20px 0px 20px;
+  }
+
+    .register:hover{
+      color: white;
+      background: #ff5475;
+      border:#ff5475 solid 2px;
+    }
+
+    .register:focus {
+      color: #ff5475;
+      border: #ff5475 solid 2px;
+    }
+
+
+//////////////////////////////////////
+///////Login Button Styling//////////
+////////////////////////////////////
+
+  input.loginButton {
+    color: #ff5475;
+    border: #ff5475 solid 2px;
+  }
+
+    input.loginButton:hover {
+      color: white;
+      background: #ff5475;
+      border:#ff5475 solid 2px;
+    }
+
+    input.loginButton:focus {
+      color: #ff5475;
+      border: #ff5475 solid 2px;
+    }
+
+
+//////////////////////////////////////
+////input Placeholder Styling////////
+////////////////////////////////////
+
+  input[placeholder] {
+   color: #64aec0;
+   font-weight: bold;
+   border:#64aec0 solid 2px;
+  }
+
+  ::-webkit-input-placeholder { color:#64aec0; }
+  ::-moz-placeholder { color:#64aec0; } /* firefox 19+ */
+  :-ms-input-placeholder { color:#64aec0; } /* ie */
+  input:-moz-placeholder { color:#64aec0; }
+
+
 .hidden {
   display: none;
 }
 
-.login h1 {
-  font-size: 1.1em;
-}
+
+//////////////////////////////////////
+////////Logged In Form Styling///////
+////////////////////////////////////
+
 
 .loggedIn {
   padding: 8%;

@@ -266,13 +266,12 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
-  border: 1px solid #33C3F0;
+  border: solid 2px #64aec0;
   outline: 0; }
 label,
 legend {
   display: block;
-  margin-bottom: .5rem;
-  font-weight: 600; }
+  font-weight: 400; }
 fieldset {
   padding: 0;
   border-width: 0; }
