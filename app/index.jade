@@ -24,13 +24,16 @@ body
         button.register Register
         input.loginButton(type='submit', name='login', value='Login')
 
+
+
+
     .loggedIn.hidden
       .profilePicture
+        .appendedProfilePic
         label(for="profilePic") Enter a URL for your Profile Picture
         input(type="url" name="profilePic" placeholder="www.example.com")#profilePictureUrl
         button#submitProfilePic.
           +
-      .appendedProfilePic
       .profileContent
         .username
           label(for="username") Select a Username
@@ -41,8 +44,8 @@ body
         .gender
           label(for="genderSelectDropdown") Select Your Gender
           select(name="genderSelectDropdown").genderSelect
-            option male
-            option female
+            option Male
+            option Female
         .description
           textarea(name="textarea" id="textarea" row="10" cols="50") What's your story...
           .profileButtons
@@ -51,6 +54,16 @@ body
                 button#saveProfileButton Save
               .six.columns
                 button#resetProfileButton Reset
+
+
+
+
+
+
+
+
+
+
 
     .app.hidden
       img(src="https://svn.apache.org/repos/asf/openoffice/symphony/trunk/main/extras/source/gallery/symbols/Icon-Gear01-Grey.png")#settingsIcon
