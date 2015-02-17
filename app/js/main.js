@@ -136,11 +136,6 @@ function appendProfile(uid){
 //////////////////////////////////////////////////////////////
 
 
-// Find a users matches
-fb.child('users').once('value', function (snap) {
-  //var data = snap.val()[fb.getAuth().uid].data;
-})
-
 function createProfile(data, uid) {
 
   $('#target').empty();
@@ -179,11 +174,11 @@ function dislikeUser(myUid, dislikedUid) {
 ////////// On Window Load Get and Load  ////////////////////////
 ///////////////////////////////////////////////////////////////////
 
-  //if authenticated, get go to app page
+  //if authenticated, go to app page
 
   fb.child('users').once('value', function(snap){
     function profile() {
-         if(fb.getAuth()[fb.getAuth().uid]){
+         if(snap.val()[fb.getAuth().uid]){
             return true
          } else { return undefined }
     }
@@ -238,6 +233,60 @@ $('#likeButton').click(function(){
     }
   });
 });
+
+//////////////////////////////////////////////////
+/////////// User Matches ///////////////////////
+///////////////////////////////////////////////////
+
+function getAndCreateMatches(){
+  fb.child('users').once('value', function (snap) {
+    var data = snap.val();
+    appendMatches((matches(data, fb.getAuth().uid))[0]);
+    $('.app').toggleClass('hidden');
+    $('#userMatches').toggleClass('hidden');
+  });
+}
+
+function appendMatches(uid){
+  fb.child('users').once('value', function(snap){
+    var data = snap.val();
+    var user = _.valuesIn(data[uid].profile)[0];
+    var dataObject = {Bio: user.Bio, Gender: user.Gender, ProfilePic: user.ProfilePic, Username: user.Username}
+
+    createMatches(dataObject, uid);
+  });
+}
+
+function createMatches(data, uid) {
+
+  $('#userMatches').empty();
+
+  var $container = $('<div class="matchContainer"></div>');
+
+  var $matchImage = $('<div><img src="' + data.ProfilePic + '"></div>'),
+      $matchName  = $('<div>' + data.Username + '</div>');
+  console.log($matchImage);
+
+  $container.append($matchImage);
+  $container.append($matchName);
+
+  $('#userMatches').append($container);
+
+};
+
+$('#matchesIcon').click(function(){
+  getAndCreateMatches();
+});
+
+$('#doneMatchesButton').click(function(){
+  $('.app').toggleClass('hidden');
+  $('#userMatches').toggleClass('hidden');
+});
+
+////////////////////////////////////////////////
+//////////// Matching Functions ///////////////
+//////////////////////////////////////////////////
+
 
 // Find users not liked or disliked
 function undecided(data, uid) {
