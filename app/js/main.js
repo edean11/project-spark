@@ -174,7 +174,7 @@ function dislikeUser(myUid, dislikedUid) {
 ////////// On Window Load Get and Load  ////////////////////////
 ///////////////////////////////////////////////////////////////////
 
-  //if authenticated, get go to app page
+  //if authenticated, go to app page
 
   fb.child('users').once('value', function(snap){
     function profile() {
@@ -182,7 +182,6 @@ function dislikeUser(myUid, dislikedUid) {
             return true
          } else { return undefined }
     }
-    console.log(profile());
     if (fb.getAuth()&&profile()) {
       $('.login').toggleClass('hidden');
       $('.app').toggleClass('hidden');
@@ -285,7 +284,7 @@ $('#doneMatchesButton').click(function(){
 });
 
 ////////////////////////////////////////////////
-//////////// Scott's Functions ///////////////
+//////////// Matching Functions ///////////////
 //////////////////////////////////////////////////
 
 
