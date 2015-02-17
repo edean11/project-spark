@@ -42,5 +42,27 @@ describe('matching functions', function () {
   });
 });
 
+describe('createProfile', function () {
+  it('should create a profile and append to a div', function () {
 
+    var $container = $('<div id="profile"></div>');
+
+    var $containerContent = $('<div></div><div></div><div></div>')
+
+    $('#profile').append($containerContent);
+
+  });
+});
+
+describe('createMatches', function () {
+  it('should create a profile of a users match and append to a div', function () {
+
+    var $container = $('<div id="profileMatch"></div>');
+
+    var $containerContent = $('<div></div><div></div><div></div>')
+
+    $('#profileMatch').append($containerContent);
+
+  });
+});
 
