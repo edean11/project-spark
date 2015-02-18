@@ -255,14 +255,19 @@ function createMatches(data, uid) {
   var $container = $('<div class="matchContainer"></div>');
 
   var $matchImage = $('<div><img src="' + data.ProfilePic + '"></div>'),
-      $matchName  = $('<div>' + data.Username + '</div>');
+      $matchName  = $('<div>' + data.Username + '</div>'),
+      $matchButton = $('<button id="doneMatchesButton">Done</button>');
   console.log($matchImage);
 
   $container.append($matchImage);
   $container.append($matchName);
+  $container.append($matchButton);
 
   $('#userMatches').append($container);
 
+  $('#doneMatchesButton').click(function(){
+    location.reload(true);
+  });
 };
 
 $('#matchesIcon').click(function(){

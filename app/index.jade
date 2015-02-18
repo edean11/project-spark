@@ -29,11 +29,11 @@ body
 
     .loggedIn.hidden
       .profilePicture
-        .appendedProfilePic
         label(for="profilePic") Enter a URL for your Profile Picture
         input(type="url" name="profilePic" placeholder="www.example.com")#profilePictureUrl
         button#submitProfilePic.
           +
+      .appendedProfilePic
       .profileContent
         .username
           label(for="username") Select a Username
@@ -51,18 +51,11 @@ body
           .profileButtons
             .row
               .six.columns
-                button#saveProfileButton Save              .six.columns
+                button#saveProfileButton Save
+              .six.columns
                 button#resetProfileButton Reset
-
-
-
-
-
-
-
-
     .app.hidden
-      img(src="https://svn.apache.org/repos/asf/openoffice/symphony/trunk/main/extras/source/gallery/symbols/Icon-Gear01-Grey.png")#matchesIcon
+      img(src="http://smarterscience.youthscience.ca/sites/default/files/images/smarterscience/ss_logos/Smarter%20Science%20Logo.starburst.png")#matchesIcon
       #target
       .appButtons
         .row
@@ -71,8 +64,6 @@ body
           .six.columns
             button#likeButton Like
     #userMatches.hidden
-      button#doneMatchesButton.
-        Done
 
     script(src='vendor/jquery.min.js')
     script(src='vendor/lodash.min.js')

@@ -113,9 +113,9 @@ h1 {
   input:-moz-placeholder { color:#64aec0; }
 
 
-/*.hidden {*/
-  /*display: none;*/
-/*}*/
+.hidden {
+  display: none;
+}
 
 
 //////////////////////////////////////
@@ -129,7 +129,6 @@ h1 {
   border: 3px solid #64aec0;
   border-radius: 20px;
   text-align: center;
-  max-height: 100%;
   max-width: 75%;
 
   .profilePicture {
@@ -138,8 +137,9 @@ h1 {
 
   .appendedProfilePic {
     img {
-      max-height: 400px;
-      max-width: 500px;
+      max-height: 500px;
+      max-width: 600px;
+      margin-bottom: 10px;
     }
   }
 
@@ -157,5 +157,94 @@ h1 {
 .app {
   #settingsIcon {
     width: 60px;
+  }
+}
+
+/////////////////////////////////////////////////
+///////////// Logged In Button Styling /////////////
+////////////////////////////////////////////////
+
+.loggedIn {
+  #saveProfileButton, #resetProfileButton {
+    width: 100px;
+    text-align: center;
+  }
+
+  #saveProfileButton:hover {
+    background-color: limegreen;
+  }
+
+  #resetProfileButton:hover {
+    background-color: #ff5475;
+  }
+
+}
+
+//////////////////////////////////////////////////////
+/////////////// App Page Styling /////////////////////
+//////////////////////////////////////////////////////
+
+.app {
+  padding: 8%;
+  margin: 5% auto;
+  border: 3px solid #64aec0;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 75%;
+
+  #target {
+    padding-top: 15px;
+
+    .profileContainer{
+      img {
+        max-width: 60%;
+      }
+
+      div {
+        margin-bottom: 10px;
+      }
+    }
+
+  }
+
+  .appButtons {
+    width: 50%;
+    margin: 0 auto;
+
+    #likeButton:hover {
+      background-color: limegreen;
+    }
+
+    #dislikeButton:hover {
+      background-color: #ff5475;
+    }
+  }
+}
+
+#matchesIcon {
+  width: 13%;
+  position: absolute;
+  top: 100px;
+  right: 100px;
+  border: 3px solid #64aec0;
+  border-radius: 20px;
+  text-align: center;
+}
+
+
+///////////////////////////////////////////////////////////////
+////////////////// Matches Page Styling ///////////////////////
+//////////////////////////////////////////////////////////////
+
+.matchContainer {
+  padding: 8%;
+  margin: 5% auto;
+  border: 3px solid #64aec0;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 75%;
+
+  img {
+    max-width: 600px;
   }
 }
