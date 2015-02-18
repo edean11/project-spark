@@ -11,17 +11,6 @@ var $tbody = $('#tbody'),
     FIREBASE_URL = 'https://project-spark.firebaseio.com',
     fb           = new Firebase(FIREBASE_URL);
 
-    // Firebase Web Sockets Method
-      //usersFb.once('value', function(res){
-        //console.log(res.val())
-    //});
-
-
-    //var usersDataFb = new Firebase(FIREBASE_URL+'/users/'+fb.getAuth().uid + 'data');
-      //usersFb.once('value', function(res){
-        //console.log(res.val())
-    //});
-
 
 ////////////////////////////////
 // Login/Logout Functionality //
@@ -72,6 +61,26 @@ var $tbody = $('#tbody'),
       }
     });
   });
+
+  //if authenticated, go to app page
+
+  fb.child('users').once('value', function(snap){
+    function profile() {
+         if(snap.val()[fb.getAuth().uid]){
+            return true
+         } else { return undefined }
+    }
+    if (fb.getAuth()&&profile()) {
+      $('.login').toggleClass('hidden');
+      $('.app').toggleClass('hidden');
+      getAndCreateProfile();
+    } else if (fb.getAuth()) {
+      $('.login').toggleClass('hidden');
+      $('.loggedIn').toggleClass('hidden');
+    }
+  });
+
+
 
 /////////////////////////////////////////////////////////////////
 //////////////////// Profile Setup /////////////////////////////
@@ -171,26 +180,8 @@ function dislikeUser(myUid, dislikedUid) {
 
 
 /////////////////////////////////////////////////////////////////////
-////////// On Window Load Get and Load  ////////////////////////
+////////// On Window Load - Get and Load Profile////////////////////////
 ///////////////////////////////////////////////////////////////////
-
-  //if authenticated, go to app page
-
-  fb.child('users').once('value', function(snap){
-    function profile() {
-         if(snap.val()[fb.getAuth().uid]){
-            return true
-         } else { return undefined }
-    }
-    if (fb.getAuth()&&profile()) {
-      $('.login').toggleClass('hidden');
-      $('.app').toggleClass('hidden');
-      getAndCreateProfile();
-    } else if (fb.getAuth()) {
-      $('.login').toggleClass('hidden');
-      $('.loggedIn').toggleClass('hidden');
-    }
-  });
 
 // Populate First Undecided Profile //
 
@@ -337,7 +328,3 @@ function usersDislikes(userData) {
   }
 }
 
-
-/*
-
-*/
