@@ -11,17 +11,6 @@ var $tbody = $('#tbody'),
     FIREBASE_URL = 'https://project-spark.firebaseio.com',
     fb           = new Firebase(FIREBASE_URL);
 
-    // Firebase Web Sockets Method
-      //usersFb.once('value', function(res){
-        //console.log(res.val())
-    //});
-
-
-    //var usersDataFb = new Firebase(FIREBASE_URL+'/users/'+fb.getAuth().uid + 'data');
-      //usersFb.once('value', function(res){
-        //console.log(res.val())
-    //});
-
 
 ////////////////////////////////
 // Login/Logout Functionality //
@@ -72,6 +61,26 @@ var $tbody = $('#tbody'),
       }
     });
   });
+
+  //if authenticated, go to app page
+
+  fb.child('users').once('value', function(snap){
+    function profile() {
+         if(snap.val()[fb.getAuth().uid]){
+            return true
+         } else { return undefined }
+    }
+    if (fb.getAuth()&&profile()) {
+      $('.login').toggleClass('hidden');
+      $('.app').toggleClass('hidden');
+      getAndCreateProfile();
+    } else if (fb.getAuth()) {
+      $('.login').toggleClass('hidden');
+      $('.loggedIn').toggleClass('hidden');
+    }
+  });
+
+
 
 /////////////////////////////////////////////////////////////////
 //////////////////// Profile Setup /////////////////////////////
@@ -136,11 +145,6 @@ function appendProfile(uid){
 //////////////////////////////////////////////////////////////
 
 
-// Find a users matches
-fb.child('users').once('value', function (snap) {
-  //var data = snap.val()[fb.getAuth().uid].data;
-})
-
 function createProfile(data, uid) {
 
   $('#target').empty();
@@ -176,26 +180,8 @@ function dislikeUser(myUid, dislikedUid) {
 
 
 /////////////////////////////////////////////////////////////////////
-////////// On Window Load Get and Load  ////////////////////////
+////////// On Window Load - Get and Load Profile////////////////////////
 ///////////////////////////////////////////////////////////////////
-
-  //if authenticated, get go to app page
-
-  fb.child('users').once('value', function(snap){
-    function profile() {
-         if(fb.getAuth()[fb.getAuth().uid]){
-            return true
-         } else { return undefined }
-    }
-    if (fb.getAuth()&&profile()) {
-      $('.login').toggleClass('hidden');
-      $('.app').toggleClass('hidden');
-      getAndCreateProfile();
-    } else if (fb.getAuth()) {
-      $('.login').toggleClass('hidden');
-      $('.loggedIn').toggleClass('hidden');
-    }
-  });
 
 // Populate First Undecided Profile //
 
@@ -238,6 +224,60 @@ $('#likeButton').click(function(){
     }
   });
 });
+
+//////////////////////////////////////////////////
+/////////// User Matches ///////////////////////
+///////////////////////////////////////////////////
+
+function getAndCreateMatches(){
+  fb.child('users').once('value', function (snap) {
+    var data = snap.val();
+    appendMatches((matches(data, fb.getAuth().uid))[0]);
+    $('.app').toggleClass('hidden');
+    $('#userMatches').toggleClass('hidden');
+  });
+}
+
+function appendMatches(uid){
+  fb.child('users').once('value', function(snap){
+    var data = snap.val();
+    var user = _.valuesIn(data[uid].profile)[0];
+    var dataObject = {Bio: user.Bio, Gender: user.Gender, ProfilePic: user.ProfilePic, Username: user.Username}
+
+    createMatches(dataObject, uid);
+  });
+}
+
+function createMatches(data, uid) {
+
+  $('#userMatches').empty();
+
+  var $container = $('<div class="matchContainer"></div>');
+
+  var $matchImage = $('<div><img src="' + data.ProfilePic + '"></div>'),
+      $matchName  = $('<div>' + data.Username + '</div>');
+  console.log($matchImage);
+
+  $container.append($matchImage);
+  $container.append($matchName);
+
+  $('#userMatches').append($container);
+
+};
+
+$('#matchesIcon').click(function(){
+  getAndCreateMatches();
+});
+
+$('#doneMatchesButton').click(function(){
+  $('.app').toggleClass('hidden');
+  $('#userMatches').toggleClass('hidden');
+});
+
+////////////////////////////////////////////////
+//////////// Matching Functions ///////////////
+//////////////////////////////////////////////////
+
 
 // Find users not liked or disliked
 function undecided(data, uid) {
@@ -288,7 +328,3 @@ function usersDislikes(userData) {
   }
 }
 
-
-/*
-
-*/
