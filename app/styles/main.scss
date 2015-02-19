@@ -247,4 +247,13 @@ h1 {
   img {
     max-width: 600px;
   }
+
+  button {
+    margin: 20px 10px;
+    width: 150px;
+
+    &:hover {
+      background-color: lightgrey;
+    }
+  }
 }
