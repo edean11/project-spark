@@ -62,6 +62,11 @@ var $tbody = $('#tbody'),
     });
   });
 
+  $('.logout').click(function(){
+    fb.unauth();
+    location.reload(true);
+  });
+
   //if authenticated, go to app page
 
   fb.child('users').once('value', function(snap){
@@ -154,9 +159,6 @@ function createProfile(data, uid) {
   var $profileImage = $('<div><img src="' + data.ProfilePic + '"></div>'),
       $profileName  = $('<div>' + data.Username + '</div>'),
       $profileDesc  = $('<div>' + data.Bio + '</div>');
-  console.log($profileImage);
-  console.log($profileName);
-  console.log($profileDesc);
 
   $container.append($profileImage);
   $container.append($profileName);
@@ -229,12 +231,24 @@ $('#likeButton').click(function(){
 /////////// User Matches ///////////////////////
 ///////////////////////////////////////////////////
 
+var matchesLength;
+var nextMatchIndex = 1;
+
 function getAndCreateMatches(){
   fb.child('users').once('value', function (snap) {
     var data = snap.val();
     appendMatches((matches(data, fb.getAuth().uid))[0]);
+    matchesLength = (matches(data, fb.getAuth().uid)).length;
     $('.app').toggleClass('hidden');
     $('#userMatches').toggleClass('hidden');
+  });
+}
+
+function nextMatch(index){
+  fb.child('users').once('value', function (snap) {
+    var data = snap.val();
+    appendMatches((matches(data, fb.getAuth().uid))[index]);
+    matchesLength = (matches(data, fb.getAuth().uid)).length;
   });
 }
 
@@ -255,24 +269,38 @@ function createMatches(data, uid) {
   var $container = $('<div class="matchContainer"></div>');
 
   var $matchImage = $('<div><img src="' + data.ProfilePic + '"></div>'),
-      $matchName  = $('<div>' + data.Username + '</div>');
-  console.log($matchImage);
+      $matchName  = $('<div>' + data.Username + '</div>'),
+      $matchButton = $('<button id="doneMatchesButton">Done</button>'),
+      $nextMatchButton = $('<button id="nextMatchButton">Next Match</button>');
 
   $container.append($matchImage);
   $container.append($matchName);
+  $container.append($matchButton);
+  $container.append($nextMatchButton);
 
   $('#userMatches').append($container);
 
+  $('#nextMatchButton').click(function(){
+    console.log(matchesLength);
+    console.log(nextMatchIndex);
+    if(nextMatchIndex<matchesLength){
+      nextMatch(nextMatchIndex);
+      nextMatchIndex++;
+    } else {
+      nextMatchIndex = 0;
+      nextMatch(nextMatchIndex);
+    }
+  });
+
+  $('#doneMatchesButton').click(function(){
+    location.reload(true);
+  });
 };
 
 $('#matchesIcon').click(function(){
   getAndCreateMatches();
 });
 
-$('#doneMatchesButton').click(function(){
-  $('.app').toggleClass('hidden');
-  $('#userMatches').toggleClass('hidden');
-});
 
 ////////////////////////////////////////////////
 //////////// Matching Functions ///////////////

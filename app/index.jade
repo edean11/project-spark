@@ -23,7 +23,6 @@ body
         input.userPasswordInput(type='password', name='password', placeholder='Password' required='required')
         button.register Register
         input.loginButton(type='submit', name='login', value='Login')
-
     .loggedIn.hidden
       .profilePicture
         label(for="profilePic") Enter a URL for your Profile Picture
@@ -52,9 +51,10 @@ body
                 button#saveProfileButton Save
               .six.columns
                 button#resetProfileButton Reset
-
     .app.hidden
-      img(src="https://svn.apache.org/repos/asf/openoffice/symphony/trunk/main/extras/source/gallery/symbols/Icon-Gear01-Grey.png")#matchesIcon
+      button.logout.
+        Logout
+      img(src="http://smarterscience.youthscience.ca/sites/default/files/images/smarterscience/ss_logos/Smarter%20Science%20Logo.starburst.png")#matchesIcon
       #target
       .profileContainer
         .appButtons
@@ -64,8 +64,6 @@ body
             .six.columns
               button#likeButton Like
     #userMatches.hidden
-      button#doneMatchesButton.
-        Done
 
     script(src='vendor/jquery.min.js')
     script(src='vendor/lodash.min.js')
