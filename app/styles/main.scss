@@ -231,6 +231,16 @@ h1 {
   text-align: center;
 }
 
+.logout {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+
+  &:hover {
+    background-color: lightgrey;
+  }
+}
+
 
 ///////////////////////////////////////////////////////////////
 ////////////////// Matches Page Styling ///////////////////////

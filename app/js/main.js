@@ -62,6 +62,11 @@ var $tbody = $('#tbody'),
     });
   });
 
+  $('.logout').click(function(){
+    fb.unauth();
+    location.reload(true);
+  });
+
   //if authenticated, go to app page
 
   fb.child('users').once('value', function(snap){
