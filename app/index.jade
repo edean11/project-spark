@@ -30,20 +30,21 @@ body
         button#submitProfilePic.
           +
       .appendedProfilePic
+
       .profileContent
         .username
           label(for="username") Select a Username
-          input(type="text")#username
+          input(type="text" placeholder="example.name")#username
         .email
           label(for="email") Email
-          input(type="text")#userEmail
+          input(type="text" placeholder="example@gmail.com")#userEmail
         .gender
           label(for="genderSelectDropdown") Select Your Gender
           select(name="genderSelectDropdown").genderSelect
             option Male
             option Female
         .description
-          textarea(name="textarea" id="textarea" row="10" cols="50") What's your story...
+          textarea(name="textarea" id="textarea" row="100" cols="75" placeholder="What's your story...")
           .profileButtons
             .row
               .six.columns
@@ -51,16 +52,20 @@ body
               .six.columns
                 button#resetProfileButton Reset
     .app.hidden
-      button.logout.
-        Logout
-      img(src="http://smarterscience.youthscience.ca/sites/default/files/images/smarterscience/ss_logos/Smarter%20Science%20Logo.starburst.png")#matchesIcon
+      button.logout
+        p Logout
+      button.matches#matchesIcon
+        p Matches
       #target
-      .appButtons
-        .row
-          .six.columns
-            button#dislikeButton Dislike
-          .six.columns
-            button#likeButton Like
+      .profileContainer
+        .appButtons
+          .row
+            .six.columns
+              button#dislikeButton
+               p Dislike
+            .six.columns
+              button#likeButton
+                p Like
     #userMatches.hidden
 
     script(src='vendor/jquery.min.js')

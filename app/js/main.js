@@ -157,8 +157,8 @@ function createProfile(data, uid) {
   var $container = $('<div class="profileContainer"></div>');
 
   var $profileImage = $('<div><img src="' + data.ProfilePic + '"></div>'),
-      $profileName  = $('<div>' + data.Username + '</div>'),
-      $profileDesc  = $('<div>' + data.Bio + '</div>');
+      $profileName  = $('<div class="profileName">' + data.Username + '</div>'),
+      $profileDesc  = $('<div class="profileDescription">' + data.Bio + '</div>');
 
   $container.append($profileImage);
   $container.append($profileName);
@@ -269,12 +269,16 @@ function createMatches(data, uid) {
   var $container = $('<div class="matchContainer"></div>');
 
   var $matchImage = $('<div><img src="' + data.ProfilePic + '"></div>'),
-      $matchName  = $('<div>' + data.Username + '</div>'),
+      $matchName  = $('<div class="matchName">' + data.Username + '</div>'),
+      $matchDesc  = $('<div class="matchDescription">' + data.Bio + '</div>'),
       $matchButton = $('<button id="doneMatchesButton">Done</button>'),
       $nextMatchButton = $('<button id="nextMatchButton">Next Match</button>');
 
+
+
   $container.append($matchImage);
   $container.append($matchName);
+  $container.append($matchDesc);
   $container.append($matchButton);
   $container.append($nextMatchButton);
 
