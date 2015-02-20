@@ -71,7 +71,8 @@ h1 {
     }
 
     .register:focus {
-      color: #ff5475;
+      color: white;
+      background:#ff5475;
       border: #ff5475 solid 2px;
     }
 
@@ -92,7 +93,8 @@ h1 {
     }
 
     input.loginButton:focus {
-      color: #ff5475;
+      color: white;
+      background:#ff5475;
       border: #ff5475 solid 2px;
     }
 
@@ -220,38 +222,6 @@ h1 {
 /////////////// App Page Styling /////////////////////
 //////////////////////////////////////////////////////
 
-.app {
-  padding: 5%;
-  margin: 5% auto;
-  border: 3px solid #64aec0;
-  border-radius: 20px;
-  text-align: center;
-  max-width: 75%;
-
-  #target {
-    padding-top: 15px;
-
-    .profileContainer{
-      img {
-        max-width: 60%;
-      }
-
-      div {
-        margin-bottom: 10px;
-      }
-    }
-
-  }
-
-  .appButtons {
-    width: 50%;
-    margin: 0 auto;
-  }
-}
-
-//////////////////////////////////////////////////////
-///////// Application Button Styling ////////////////
-////////////////////////////////////////////////////
 
 
 .app {
@@ -272,57 +242,12 @@ h1 {
   }
 }
 
-.logout {
-  margin-right: 500px;
-
-}
-
- #dislikeButton, .logout {
-    margin-top: 15px;
-    margin-right: 10px;
-    color: #ff5475;
-    border: #ff5475 solid 2px;
-    padding: 0px 20px 0px 20px;
-  }
-
-    #dislikeButton:hover, .logout:hover {
-      color: white;
-      background: #ff5475;
-      border:#ff5475 solid 2px;
-    }
-
-    #likeButton {
-    margin-top: 15px;
-    margin-right: 10px;
-    color: limegreen;
-    border: limegreen solid 2px;
-    padding: 0px 20px 0px 20px;
-  }
-
-    #likeButton:hover {
-      color: white;
-      background: limegreen;
-      border: limegreen solid 2px;
-    }
-
-
-
-#matchesIcon {
-  width: 13%;
-  top: 100px;
-  right: 100px;
-  border: 3px solid #64aec0;
-  border-radius: 20px;
-  text-align: center;
-}
-
-
-
 .profileName {
   font-size: 1.5em;
   color: #64aec0;
   font-weight: bold;
   margin: auto;
+  margin: 5px 0px;
 }
 
 
@@ -341,8 +266,127 @@ h1 {
 
 
 
+//////////////////////////////////////////////////////
+///////// Matches and Logout Button Styling /////////
+////////////////////////////////////////////////////
+
+.logout {
+  p {
+    color: #ff5475;
+    padding-left: 15px;
+  }
+    float: left;
+    color: #ff5475;
+    border: #ff5475 solid 2px;
+    padding: 0px 20px 0px 20px;
+    background: white image-url('attachments/logout-pink.png') no-repeat 8px 2px;
+    background-size: 20px 30px;
+  }
+
+  .logout:hover {
+    p {
+      color: white;
+      padding-left: 15px;
+     }
+      color: #ff5475;
+      border: #ff5475 solid 2px;
+      background: #ff5475 image-url('attachments/logout-white.png') no-repeat 8px 2px;
+      background-size: 20px 30px;
+    }
 
 
+#matchesIcon {
+  p {
+    color: #ff5475;
+    padding-left: 15px;
+  }
+    float: right;
+    border:#ff5475 solid 2px;
+    text-align: center;
+    color: #ff5475;
+    padding: 0px 20px 0px 20px;
+    background: white image-url('attachments/matches-pink.png') no-repeat 8px 2px;
+    background-size: 20px 30px;
+  }
+    #matchesIcon:hover {
+    p {
+      color: white;
+      padding-left: 15px;
+     }
+      color: #ff5475;
+      border: #ff5475 solid 2px;
+      background: #ff5475 image-url('attachments/matches-white.png') no-repeat 8px 2px;
+      background-size: 20px 30px;
+    }
+
+
+
+
+//////////////////////////////////////////////////////
+///////// Dislikes and Likes Button Styling /////////
+////////////////////////////////////////////////////
+
+ #dislikeButton {
+   p {
+    color: #ff5475;
+    padding-left: 15px;
+    margin-top: -2px;
+  }
+    margin-top: 15px;
+    margin-right: 10px;
+    color: #ff5475;
+    border: #ff5475 solid 2px;
+    padding: 0px 10px 0px 20px;
+    background: white image-url('attachments/thumbs-down-pink.png') no-repeat 8px 3px;
+    background-size: 20px 30px;
+
+  }
+
+    #dislikeButton:hover {
+      p {
+       color: white;
+       padding-left: 15px;
+      }
+        color: white;
+        background: #ff5475;
+        border:#ff5475 solid 2px;
+        background: #ff5475 image-url('attachments/thumbs-down-white.png') no-repeat 8px 3px;
+        background-size: 20px 30px;
+      }
+
+    #likeButton {
+      p {
+        color: limegreen;
+        padding-right: 15px;
+        margin-top: -2px;
+      }
+        margin-top: 15px;
+        margin-right: 10px;
+        color: limegreen;
+        border: limegreen solid 2px;
+        padding: 0px 20px 0px 20px;
+        background: white image-url('attachments/thumbs-up-green.png') no-repeat 60px 3px;
+        background-size: 20px 30px;
+
+      }
+
+      #likeButton:hover {
+        p {
+        color: white;
+        padding-right: 15px;
+        margin-top: -2px;
+      }
+        color: white;
+        background: limegreen;
+        border: limegreen solid 2px;
+        background: limegreen image-url('attachments/thumbs-up-white.png') no-repeat 60px 3px;
+        background-size: 20px 30px;
+      }
+
+      .appButtons {
+        width: 50%;
+        margin: 0 auto;
+      }
 
 
 ///////////////////////////////////////////////////////////////

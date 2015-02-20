@@ -52,17 +52,20 @@ body
               .six.columns
                 button#resetProfileButton Reset
     .app.hidden
-      button.logout.
-        Logout
-      img(src="http://smarterscience.youthscience.ca/sites/default/files/images/smarterscience/ss_logos/Smarter%20Science%20Logo.starburst.png")#matchesIcon
+      button.logout
+        p Logout
+      button.matches#matchesIcon
+        p Matches
       #target
       .profileContainer
         .appButtons
           .row
             .six.columns
-              button#dislikeButton Dislike
+              button#dislikeButton
+               p Dislike
             .six.columns
-              button#likeButton Like
+              button#likeButton
+                p Like
     #userMatches.hidden
 
     script(src='vendor/jquery.min.js')
