@@ -394,14 +394,75 @@ h1 {
 //////////////////////////////////////////////////////////////
 
 .matchContainer {
-  padding: 8%;
+  padding: 5%;
   margin: 5% auto;
   border: 3px solid #64aec0;
   border-radius: 20px;
   text-align: center;
   max-width: 75%;
+}
 
+
+.matchContainer {
   img {
-    max-width: 600px;
+    max-height: 500px;
+    max-width: 100%;
+    border-radius: 20px;
   }
 }
+
+.matchName {
+  font-size: 1.5em;
+  color: #64aec0;
+  font-weight: bold;
+  margin: auto;
+  margin: 5px 0px;
+}
+
+
+.matchDescription {
+  border: 3px solid #64aec0;
+  border-radius: 20px;
+  padding: 0px 50px 0px 50px;
+  max-width: 100%;
+  max-height: 500%;
+  margin: auto;
+  text-align: left;
+  padding: 10px 20px 10px 20px;
+  color:#64aec0;
+  font-weight: bold;
+}
+
+
+////////////////////////////////////////////////////////////////
+////////////////// Matches Page Button Styling ////////////////
+//////////////////////////////////////////////////////////////
+
+#doneMatchesButton {
+  margin-top: 15px;
+  margin-right: 40px;
+  color: #ff5475;
+  border: #ff5475 solid 2px;
+  padding: 0px 20px 0px 20px;
+  }
+
+    #doneMatchesButton:hover {
+    color: white;
+    background: #ff5475;
+    border: #ff5475 solid 2px;
+  }
+
+
+#nextMatchButton {
+  margin-top: 15px;
+  margin-left: 40px;
+  color: limegreen;
+  border: limegreen solid 2px;
+  padding: 0px 20px 0px 20px;
+  }
+
+  #nextMatchButton:hover {
+    color: white;
+    background: limegreen;
+    border: limegreen solid 2px;
+  }
