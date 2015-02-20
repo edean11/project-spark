@@ -124,7 +124,7 @@ h1 {
 
 
 .loggedIn {
-  padding: 8%;
+  padding: 5%;
   margin: 5% auto;
   border: 3px solid #64aec0;
   border-radius: 20px;
@@ -138,8 +138,9 @@ h1 {
   .appendedProfilePic {
     img {
       max-height: 500px;
-      max-width: 600px;
+      max-width: 100%;
       margin-bottom: 10px;
+      border-radius: 20px;
     }
   }
 
@@ -156,7 +157,7 @@ h1 {
 
 .app {
   #settingsIcon {
-    width: 60px;
+    width: 1000px;
   }
 }
 
@@ -170,22 +171,57 @@ h1 {
     text-align: center;
   }
 
-  #saveProfileButton:hover {
-    background-color: limegreen;
+    #submitProfilePic, #saveProfileButton {
+    margin-top: 15px;
+    margin-right: 10px;
+    color: limegreen;
+    border: limegreen solid 2px;
+    padding: 0px 20px 0px 20px;
   }
 
-  #resetProfileButton:hover {
-    background-color: #ff5475;
+     #submitProfilePic:hover, #saveProfileButton:hover {
+      color: white;
+      background: limegreen;
+      border:limegreen solid 2px;
+    }
+
+    #resetProfileButton {
+    margin-top: 15px;
+    margin-right: 10px;
+    color: #ff5475;
+    border: #ff5475 solid 2px;
+    padding: 0px 20px 0px 20px;
   }
 
-}
+    #resetProfileButton:hover {
+      color: white;
+      background: #ff5475;
+      border: #ff5475 solid 2px;
+    }
+  }
+
+  input#profilePictureUrl, #username, #userEmail {
+    text-align: center;
+  }
+
+  #textarea, select.genderSelect {
+    color: #64aec0;
+    border: 2px solid #64aec0;
+    font-weight: bold;
+  }
+
+  #textarea {
+    max-width: 100%;
+    max-height: 300px;
+  }
+
 
 //////////////////////////////////////////////////////
 /////////////// App Page Styling /////////////////////
 //////////////////////////////////////////////////////
 
 .app {
-  padding: 8%;
+  padding: 5%;
   margin: 5% auto;
   border: 3px solid #64aec0;
   border-radius: 20px;
@@ -210,26 +246,103 @@ h1 {
   .appButtons {
     width: 50%;
     margin: 0 auto;
-
-    #likeButton:hover {
-      background-color: limegreen;
-    }
-
-    #dislikeButton:hover {
-      background-color: #ff5475;
-    }
   }
 }
 
+//////////////////////////////////////////////////////
+///////// Application Button Styling ////////////////
+////////////////////////////////////////////////////
+
+
+.app {
+  padding: 5%;
+  margin: 5% auto;
+  border: 3px solid #64aec0;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 75%;
+}
+
+
+.profileContainer {
+  img {
+    max-height: 500px;
+    max-width: 100%;
+    border-radius: 20px;
+  }
+}
+
+.logout {
+  margin-right: 500px;
+
+}
+
+ #dislikeButton, .logout {
+    margin-top: 15px;
+    margin-right: 10px;
+    color: #ff5475;
+    border: #ff5475 solid 2px;
+    padding: 0px 20px 0px 20px;
+  }
+
+    #dislikeButton:hover, .logout:hover {
+      color: white;
+      background: #ff5475;
+      border:#ff5475 solid 2px;
+    }
+
+    #likeButton {
+    margin-top: 15px;
+    margin-right: 10px;
+    color: limegreen;
+    border: limegreen solid 2px;
+    padding: 0px 20px 0px 20px;
+  }
+
+    #likeButton:hover {
+      color: white;
+      background: limegreen;
+      border: limegreen solid 2px;
+    }
+
+
+
 #matchesIcon {
   width: 13%;
-  position: absolute;
   top: 100px;
   right: 100px;
   border: 3px solid #64aec0;
   border-radius: 20px;
   text-align: center;
 }
+
+
+
+.profileName {
+  font-size: 1.5em;
+  color: #64aec0;
+  font-weight: bold;
+  margin: auto;
+}
+
+
+.profileDescription {
+  border: 3px solid #64aec0;
+  border-radius: 20px;
+  padding: 0px 50px 0px 50px;
+  max-width: 100%;
+  max-height: 500%;
+  margin: auto;
+  text-align: left;
+  padding: 10px 20px 10px 20px;
+  color:#64aec0;
+  font-weight: bold;
+}
+
+
+
+
+
 
 
 ///////////////////////////////////////////////////////////////

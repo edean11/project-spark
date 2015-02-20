@@ -157,8 +157,8 @@ function createProfile(data, uid) {
   var $container = $('<div class="profileContainer"></div>');
 
   var $profileImage = $('<div><img src="' + data.ProfilePic + '"></div>'),
-      $profileName  = $('<div>' + data.Username + '</div>'),
-      $profileDesc  = $('<div>' + data.Bio + '</div>');
+      $profileName  = $('<div class="profileName">' + data.Username + '</div>'),
+      $profileDesc  = $('<div class="profileDescription">' + data.Bio + '</div>');
 
   $container.append($profileImage);
   $container.append($profileName);
