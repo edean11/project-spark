@@ -5,6 +5,7 @@ rm -rf public
 mkdir public
 mkdir public/css
 mkdir public/js
+mkdir public/attachments
 
 # Copy html and css files in the app folder into the public directory and preserve directories
 # Add additional file extensions if needed i.e. images, fonts, etc..
@@ -14,6 +15,9 @@ nodemon -e html,css --watch app \
 
 nodemon --watch app/js \
   --exec "cd app; find . -type f \( -name '*.js' \) | cpio -pdvm ../public; cd .." &
+
+nodemon --watch app/attachments \
+  --exec "cd app; find . -type f \( -name '*.png' \) | cpio -pdvm ../public; cd .." &
 
 # Copy bower_components js files
 mkdir public/vendor
