@@ -5,11 +5,12 @@ rm -rf public
 mkdir public
 mkdir public/css
 mkdir public/js
+mkdir public/attachments
 
 # Copy html and css files in the app folder into the public directory and preserve directories
 # Add additional file extensions if needed i.e. images, fonts, etc..
 cd app
-find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) | cpio -pdvm ../public
+find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" -o -name "*.png" \) | cpio -pdvm ../public
 cd ..
 
 # Copy bower_components js files
