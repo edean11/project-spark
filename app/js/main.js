@@ -206,7 +206,7 @@ $('#dislikeButton').click(function(){
       getAndCreateProfile();
     } else {
       $('#target').empty();
-      $('#target').append($('<img src"#"></img>'));
+      $('#target').append($('<p class="noMoreProfiles">No More Profiles!</p>'));
     }
   });
 });
